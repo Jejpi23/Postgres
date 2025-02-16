@@ -1,0 +1,3 @@
+C:/workplace/Postgres/C++/cmake-build-debug/CMakeFiles/C__.dir
+C:/workplace/Postgres/C++/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/workplace/Postgres/C++/cmake-build-debug/CMakeFiles/rebuild_cache.dir
