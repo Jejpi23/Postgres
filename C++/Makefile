@@ -1,28 +1,30 @@
-# Kompilator
 CXX = g++
 
-# Flagi kompilatora
-CXXFLAGS = -std=c++11 -Wall -Wextra
+CXXFLAGS = -std=c++11 -Wall -Wextra -Idatabase
 
-# Biblioteki do linkowania
 LDLIBS = -lpq
 
-# Nazwa pliku wykonywalnego
 TARGET = app
 
-# Ścieżka do pliku źródłowego
-SRC = src/main.cpp
+SRC_DIR = src
+DB_DIR = database
 
-# Reguła domyślna
+SRCS = $(SRC_DIR)/main.cpp $(DB_DIR)/database.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
 all: $(TARGET)
 
-# Reguła kompilacji pliku wykonywalnego
-$(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC) $(LDLIBS)
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LDLIBS)
 
-# Czyszczenie pliku wykonywalnego
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(DB_DIR)/%.o: $(DB_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(TARGET)
+	rm -f $(OBJS) $(TARGET)
 
-# Phony targets (cele, które nie są plikami)
 .PHONY: all clean
