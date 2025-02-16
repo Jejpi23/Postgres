@@ -37,11 +37,16 @@ private:
 //database hard control
 class database {
 public:
-    database();
+    database(DatabaseConnection& dbConn);  // Konstruktor z parametrem
     ~database();
 
     void createtab();
     void deletetab();
+    void fillrandom();
+
+private:
+    DatabaseConnection& dbConn;  // Referencja do połączenia z bazą danych
 };
+
 
 #endif // DATABASE_H
